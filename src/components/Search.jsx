@@ -4,13 +4,19 @@ import Thumbnails from './Thumbnails'
 
 class Search extends React.Component{
 
+    /*
     constructor(){
         super();
-
         this.state = {
-            photos: []
-        };
+            photos:[]
+        }
     }
+    */
+
+    constructor(props) {
+        super(props);
+        this.store = this.props.store;
+      }
 
     search = (query) => {
         // back tics and dollar, es6 template string
@@ -18,6 +24,7 @@ class Search extends React.Component{
         fetch(apiURL)
             .then(response => response.json())
             .then(json => {
+                this.store.dispatch({type: "update", photos: json.photos})
                 this.setState({photos: json.photos});
                 console.log(json)
             })
@@ -27,7 +34,8 @@ class Search extends React.Component{
     }
 
     render(){
-        const { photos } = this.state
+        //const { photos } = this.state
+        const { photos } = this.store.getState().photos;
         return (
             <div>
                 <div style={{marginBottom:'10px'}} >
