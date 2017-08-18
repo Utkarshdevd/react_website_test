@@ -1,11 +1,11 @@
 import React from 'react'
 
 const Thumbnails = ({ photos }) => (
-    <div>
+    <div className="row">
         {
-            photos.map(photo => (
-                    <div key={photo.id} className="col-md-2" style={{marginRight:'10px',marginBottom:'10px'}} >
-                        <img src={photo.image_url} alt=""/>
+            photos.map((photo, index) => (
+                    <div key={index} className="col-md-3 clearfix" style={{marginTop:'10px', marginLeft:'0px'}} >
+                        <img src={photo.media.m} alt=""/>
                     </div>
             ))
         }
